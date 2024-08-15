@@ -1,14 +1,14 @@
 import random
 matriz = [[' ',' ',' '],[' ',' ',' '],[' ',' ',' ']]
 
-def tabuleiro():
+def tabuleiro(matriz):
     for item in range(3):
         print(f' {matriz[item][0]} | {matriz[item][1]} | {matriz[item][2]} ')
         if item <= 1:
             print("---+---+---")
 
 
-def jogada_humano():
+def jogada_humano(matriz):
     while True:
         linha = int(input('Digite a linha que deseja jogar: ')) - 1
         while 0 > linha or linha > 2:
@@ -26,7 +26,7 @@ def jogada_humano():
             continue
 
 
-def jogada_pc():
+def jogada_pc(matriz):
     while True:
         linha_computador = random.randint(0,2)
         print(f'Linha escolhida pelo computador: {linha_computador+1}')
@@ -43,7 +43,7 @@ def jogada_pc():
             continue
     
 
-def verificador_do_vencedor():
+def verificador_do_vencedor(matriz):
     for linha in matriz:
         if linha [0] == linha[1] == linha[2] and linha[0] != ' ':
             if linha[0] == 'X':
@@ -84,20 +84,20 @@ def main():
     contador = 0
     primeiro_jogador = random.randint(0,1)
 
-    tabuleiro()
+    tabuleiro(matriz)
 
     while contador < 9:
         if (contador % 2 == 0 and primeiro_jogador == 0) or (contador % 2 == 1 and primeiro_jogador == 1):
-            jogada_pc()
+            jogada_pc(matriz)
         else:
-            jogada_humano()
+            jogada_humano(matriz)
         
-        tabuleiro()
-        if verificador_do_vencedor():
+        tabuleiro(matriz)
+        if verificador_do_vencedor(matriz):
             break
         contador += 1
 
-    if contador == 9 and not verificador_do_vencedor():
+    if contador == 9 and not verificador_do_vencedor(matriz):
         print('Empate!')
 
 main()
