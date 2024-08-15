@@ -11,15 +11,13 @@ def tabuleiro():
 def jogada_humano():
     while True:
         linha = int(input('Digite a linha que deseja jogar: ')) - 1
-        if 0 > linha or linha > 2:
-            print('Linha inválida')
-            continue
-
+        while 0 > linha or linha > 2:
+            linha = int(input('LOCAL INVÁLIDO. Digite a linha que deseja jogar: ')) - 1
+            
         coluna = int(input('Digite a coluna que deseja jogar: ')) - 1
-        if 0 > coluna or coluna > 2:
-            print('Coluna inválida')
-            continue
-
+        while 0 > coluna or coluna > 2:
+            coluna = int(input('LOCAL INVÁLIDO. Digite a coluna que deseja jogar: ')) - 1
+            
         if matriz[linha][coluna] == ' ':
             matriz[linha][coluna] = 'X'
             break
@@ -32,6 +30,7 @@ def jogada_pc():
     while True:
         linha_computador = random.randint(0,2)
         print(f'Linha escolhida pelo computador: {linha_computador+1}')
+        
         coluna_computador = random.randint(0,2)
         print(f'Coluna escolhida pelo computador: {coluna_computador+1}')
 
@@ -62,7 +61,7 @@ def verificador_do_vencedor():
             return True
     
     # verificador da diagonal esquerda
-    if matriz[0][0] == matriz[1][1] == matriz [2][2] and matriz[0][0] != ' ':
+    if matriz[0][0] == matriz[1][1] == matriz[2][2] and matriz[0][0] != ' ':
         if matriz[0][0] == 'X':
             print('Jogador venceu')
         else:
@@ -70,7 +69,7 @@ def verificador_do_vencedor():
         return True
     
     #verificador da diagonal direita
-    if matriz[0][2] == matriz [1][1] == matriz[2][0] and matriz[0][2] != ' ':
+    if matriz[0][2] == matriz[1][1] == matriz[2][0] and matriz[0][2] != ' ':
         if matriz[0][2] == 'X':
             print('Jogador venceu')
         else:
