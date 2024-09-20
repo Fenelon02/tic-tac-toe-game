@@ -1,5 +1,23 @@
 import random
+import time
 matriz = [[' ',' ',' '],[' ',' ',' '],[' ',' ',' ']]
+
+def outdoor_jogo_da_velha():
+    print("""
+  ******************************************
+  *                                        *
+  *        J O G O   D A   V E L H A       *
+  *                                        *
+  ******************************************
+    """)
+
+
+def regras():
+    print('REGRAS DO JOGO DA VELHA:')
+    print('1-Ganha aquele que completar PRIMEIRO a linha ou a coluna ou a diagonal com o elemento escolhido.')
+    print('2-O jogador humano joga com o elemento "x", e o computador com "O".')
+    print('3-Caso os espacos estejam todos preenchidos e mesmo assim nao obtiver um ganhador, sera dado empate na partida')
+    print()
 
 def tabuleiro(matriz):
     for item in range(3):
@@ -80,11 +98,25 @@ def verificador_do_vencedor(matriz):
         
 
 def main():
-    print('Vamos começar!')
+    outdoor_jogo_da_velha()
+    time.sleep(0.5)
+    regras()
+    time.sleep(0.5)
+    print('Carregando 1 jogador..')
+    time.sleep(0.5)
     contador = 0
     primeiro_jogador = random.randint(0,1)
 
-    tabuleiro(matriz)
+    if (contador % 2 == 0 and primeiro_jogador == 0) or (contador % 2 == 1 and primeiro_jogador == 1):
+        print('Primeiro jogador será o computador')
+        print()
+    else:
+        print('Primeiro jogador será o voce.')
+        print()
+        tabuleiro(matriz)
+        
+    time.sleep(0.5)
+    
 
     while contador < 9:
         if (contador % 2 == 0 and primeiro_jogador == 0) or (contador % 2 == 1 and primeiro_jogador == 1):
